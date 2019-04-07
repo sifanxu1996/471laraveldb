@@ -26,14 +26,17 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <a class="navbar-brand" href="/routes">
-                    Routes
-                </a>
 
                 @if (Auth::user())
                     @if (Auth::user()->role == 'client')
                         <a class="navbar-brand" href="/clients/{{ Auth::user()->id }}">
                             My Account
+                        </a>
+                    @endif
+
+                    @if (Auth::user()->role == 'operator')
+                        <a class="navbar-brand" href="/operators/{{ Auth::user()->id }}">
+                            My Assigned Runs
                         </a>
                     @endif
 
@@ -43,6 +46,10 @@
                         </a>
                     @endif
                 @endif
+
+                <a class="navbar-brand" href="/routes">
+                    Routes
+                </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
