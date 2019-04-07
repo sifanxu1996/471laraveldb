@@ -1,43 +1,29 @@
--- php artisan db:seed
-
-DROP DATABASE IF EXISTS Transit;
-CREATE DATABASE Transit;
-
-CREATE TABLE Users (
-	id bigInt(20) NOT NULL AUTO_INCREMENT,
-	name varchar(255) NOT NULL,
-	email varchar(255) NOT NULL UNIQUE,
-	role varchar(255) NOT NULL DEFAULT 'client',
-	email_verified_at timestamp,
-	password varchar(255) NOT NULL,
-	remember_token varchar(100),
-	create_at timestamp,
-	updated_at timestamp,
-	PRIMARY KEY (id)
-);
-
 CREATE TABLE Clients (
-	user_id bigInt(20) NOT NULL,
+	user_id bigint(20) UNSIGNED NOT NULL,
 	account_balance int(11) DEFAULT 0,
-	FOREIGN KEY (user_id) REFERENCES Users(id)
+	FOREIGN KEY(user_id) REFERENCES Users(id)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
 );
 
 CREATE TABLE Employees (
-	user_id bigInt(20) NOT NULL,
+	user_id bigint(20) UNSIGNED NOT NULL,
 	ssn int(11) NOT NULL,
 	emp_type varchar(255) NOT NULL,
 	FOREIGN KEY (user_id) REFERENCES Users(id)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
 );
 
 CREATE TABLE Vehicles (
-	id bigInt(20) NOT NULL AUTO_INCREMENT,
+	id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
 	license varchar(255) NOT NULL,
 	capacity int(11) NOT NULL,
 	PRIMARY KEY (id)
 );
 
 CREATE TABLE Routes (
-	id bigInt(20) NOT NULL AUTO_INCREMENT,
+	id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
 	name varchar(255) NOT NULL,
 	start_stop_id int(11) NOT NULL,
 	end_stop_id int(11) NOT NULL,
@@ -45,41 +31,37 @@ CREATE TABLE Routes (
 );
 
 CREATE TABLE Route_legs (
-	id bigInt(20) NOT NULL AUTO_INCREMENT,
-	route_id bigInt(20) NOT NULL,
+	id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+	route_id bigint(20) UNSIGNED NOT NULL,
 	start_stop_id int(11) NOT NULL,
 	end_stop_id int(11) NOT NULL,
 	duration int(11) NOT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY (route_id) REFERENCES Routes(id)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
 );
 
 CREATE TABLE Runs (
-	id bigInt(20) NOT NULL AUTO_INCREMENT,
-	route_id bigInt(20) NOT NULL,
+	id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+	route_id bigint(20) UNSIGNED NOT NULL,
 	start_time time NOT NULL,
-	admin_id bigInt(20) NOT NULL,
-	operator_id bigInt(20) NOT NULL,
-	vehicle_id bigInt(20) NOT NULL,
+	admin_id bigint(20) UNSIGNED NOT NULL,
+	operator_id bigint(20) UNSIGNED NOT NULL,
+	vehicle_id bigint(20) UNSIGNED NOT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY (route_id) REFERENCES Routes(id)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
 );
 
 CREATE TABLE Stops (
-	id bigInt(20) NOT NULL AUTO_INCREMENT,
+	id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
 	address varchar(255) NOT NULL UNIQUE,
 	PRIMARY KEY (id)
 );
 
 ALTER TABLE stops AUTO_INCREMENT = 1000;
-
-
-INSERT INTO Users (id, name, email, role, password) VALUES
-(1, 'Abe', 'abe@uc.ca', 'client', 'password'),
-(2, 'Bob', 'bob@uc.ca', 'admin', 'password'),
-(3, 'Carl', 'carl@uc.ca', 'operator', 'password'),
-(4, 'Dave', 'dave@uc.ca', 'operator', 'password'),
-(5, 'Eli', 'eli@uc.ca', 'operator', 'password');
 
 INSERT INTO Clients (user_id, account_balance) VALUES
 (1, 100);
