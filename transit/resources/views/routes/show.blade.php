@@ -21,8 +21,25 @@
                         <div class="card">
                             <div class='card-header'>Route Leg {{ $route_leg->id }}</div>
                             <div class="card-body">
-                                Start Stop: {{ $route_leg->start_stop_id }} <br>
-                                End Stop: {{ $route_leg->end_stop_id }} <br>
+                                Start Stop: {{ $route_leg->start_stop_id }}, 
+                                
+                                @foreach ($stops as $stop)
+                                    @if ($stop->id == $route_leg->start_stop_id)
+                                        {{ $stop->address }}
+                                        @break
+                                    @endif
+                                @endforeach
+                                <br>
+
+                                End Stop: {{ $route_leg->end_stop_id }}, 
+                                @foreach ($stops as $stop)
+                                    @if ($stop->id == $route_leg->end_stop_id)
+                                        {{ $stop->address }}
+                                        @break
+                                    @endif
+                                @endforeach
+                                <br>
+
                                 Duration: {{ $route_leg->duration }} minutes
                             </div>
                         </div>
