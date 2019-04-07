@@ -14,7 +14,19 @@
                         <a href="/routes/{{ $route->id }}/edit">
                             <button>Edit Route</button>
                         </a>
-                     @endif
+                        <br>
+                    @endif
+
+                    @foreach ($route_legs as $route_leg)
+                        <div class="card">
+                            <div class='card-header'>Route Leg {{ $route_leg->id }}</div>
+                            <div class="card-body">
+                                Start Stop: {{ $route_leg->start_stop_id }} <br>
+                                End Stop: {{ $route_leg->end_stop_id }} <br>
+                                Duration: {{ $route_leg->duration }} minutes
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
 
                 <div class="card-body">
@@ -22,7 +34,7 @@
                         @foreach ($runs as $run)
         					<article>
         						<h2>
-                                    Run ID: {{$run->id}}
+                                    Run ID: {{ $run->id }}
         						</h2>
                                 Time: {{ $run->start_time }} <br>
                                 Admin: {{ $run->admin_id }} <br>
