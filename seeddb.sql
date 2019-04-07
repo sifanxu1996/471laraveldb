@@ -1,26 +1,3 @@
-SET SQL_MODE='ALLOW_INVALID_DATES';
-
-DROP DATABASE IF EXISTS Transit;
-CREATE DATABASE Transit;
-
--- php artisan migrate
--- php artisan db:seed
-
-/**
-CREATE TABLE Users (
-	id bigint(20) NOT NULL AUTO_INCREMENT,
-	name varchar(255) NOT NULL,
-	email varchar(255) NOT NULL UNIQUE,
-	role varchar(255) NOT NULL DEFAULT 'client',
-	email_verified_at timestamp(),
-	password varchar(255) NOT NULL,
-	remember_token varchar(100) DEFAULT NULL,
-	created_at timestamp(),
-	updated_at timestamp(),
-	PRIMARY KEY (id)
-);
-**/
-
 CREATE TABLE Clients (
 	user_id bigint(20) UNSIGNED NOT NULL,
 	account_balance int(11) DEFAULT 0,
