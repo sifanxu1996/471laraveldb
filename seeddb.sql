@@ -71,7 +71,8 @@ INSERT INTO Employees (user_id, ssn, emp_type) VALUES
 (2, 222222222, 'admin'),
 (3, 333333333, 'operator'),
 (4, 444444444, 'operator'),
-(5, 555555555, 'operator');
+(5, 555555555, 'operator'),
+(6, 666666666, 'analyst');
 
 INSERT INTO Vehicles (id, license, capacity) VALUES
 (1, 'DD8-392A', 40),

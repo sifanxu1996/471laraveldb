@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::resource('routes', 'RoutesController');
+Route::resource('analyst', 'AnalystController');
 
 /*
 Route::get('/routes', 'RoutesController@index');
