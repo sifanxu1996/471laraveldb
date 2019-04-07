@@ -54,7 +54,13 @@ class RoutesController extends Controller
 		$sql = 'SELECT * FROM runs WHERE route_id = ' . $id;
 		$runs = DB::select($sql);
 
-		return view('routes.show', compact('route', 'runs'));
+		$sql = 'SELECT * FROM route_legs WHERE route_id = ' . $id;
+		$route_legs = DB::select($sql);
+
+		$sql = 'SELECT * FROM stops';
+		$stops = DB::select($sql);
+
+		return view('routes.show', compact('route', 'runs', 'route_legs', 'stops'));
 	}
 
 	public function edit($id)

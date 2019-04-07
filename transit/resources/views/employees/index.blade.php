@@ -13,9 +13,8 @@
                 <div class="card-body">
 					<article>
 						<h2>
-							<a href="/employees/{{ $emp->id }}/"> Employee: {{ $emp->id }} </a>
+							Employee: {{ $emp->name }}
 						</h2>
-						Name: {{ $emp->name }} <br>
 						Email: {{ $emp->email }} <br>
                         Role: {{ $emp->emp_type }} <br>
                         SSN: {{ $emp->ssn }} <br>
