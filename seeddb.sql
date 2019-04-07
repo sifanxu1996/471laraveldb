@@ -49,6 +49,7 @@ CREATE TABLE Runs (
 	admin_id bigint(20) UNSIGNED NOT NULL,
 	operator_id bigint(20) UNSIGNED NOT NULL,
 	vehicle_id bigint(20) UNSIGNED NOT NULL,
+	max_ridership bigint(20) UNSIGNED NOT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY (route_id) REFERENCES Routes(id)
 	ON UPDATE CASCADE
@@ -94,12 +95,12 @@ INSERT INTO Routes (id, name, start_stop_id, end_stop_id) VALUES
 (2, 'Fish Creek', 1020, 1040),
 (3, 'Bridlewood', 1040, 1060);
 
-INSERT INTO Runs (route_id, start_time, admin_id, operator_id, vehicle_id) VALUES
-(1, '6:00', 2, 3, 1),
-(1, '7:00', 2, 4, 2),
-(1, '8:00', 2, 3, 3),
-(2, '12:00', 2, 4, 4),
-(3, '12:00', 2, 5, 5);
+INSERT INTO Runs (route_id, start_time, admin_id, operator_id, vehicle_id, max_ridership) VALUES
+(1, '6:00', 2, 3, 1, 17),
+(1, '7:00', 2, 4, 2, 30),
+(1, '8:00', 2, 3, 3, 40),
+(2, '12:00', 2, 4, 4, 22),
+(3, '12:00', 2, 5, 5, 25);
 
 INSERT INTO Route_legs (route_id, start_stop_id, end_stop_id, duration) VALUES
 (1, 1000, 1010, 5),
