@@ -24,7 +24,10 @@ class RoutesController extends Controller
 	{
 		Auth::user()->authenticateAdmin();
 
-		return view('routes.create');
+		$sql = 'SELECT * FROM stops';
+		$stops = DB::select($sql);
+
+		return view('routes.create', compact('stops'));
 	}
 
 	public function store()
@@ -60,7 +63,13 @@ class RoutesController extends Controller
 		$sql = 'SELECT * FROM stops';
 		$stops = DB::select($sql);
 
-		return view('routes.show', compact('route', 'runs', 'route_legs', 'stops'));
+		$sql = 'SELECT * FROM employees e, users u WHERE e.user_id = u.id AND e.emp_type = "operator"';
+		$operators = DB::select($sql);
+
+		$sql = 'SELECT * FROM vehicles';
+		$vehicles = DB::select($sql);
+
+		return view('routes.show', compact('route', 'runs', 'route_legs', 'stops', 'operators', 'vehicles'));
 	}
 
 	public function edit($id)

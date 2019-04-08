@@ -28,19 +28,21 @@
                         </div>
 
                         <div class="field">
-                            <label class="label" for="start_stop_id">Start Stop ID</label>
-                            
-                            <div class="control">
-                                <input type="number" min="1000" max="9999" name="start_stop_id" value="{{ old('start_stop_id') }}">
-                            </div>
+                            <label class ="label" for="start_stop_id">Start Stop ID</label> <br>
+                            <select class="control" name="start_stop_id">
+                                @foreach ($stops as $stop)
+                                    <option class = "input" value="{{ $stop->id }}"> {{ $stop->id }}: {{ $stop->address }} </option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="field">
-                            <label class="label" for="end_stop_id">End Stop ID</label>
-                            
-                            <div class="control">
-                                <input type="number" min="1000" max="9999" name="end_stop_id" value="{{ old('end_stop_id') }}">
-                            </div>
+                            <label class ="label" for="end_stop_id">End Stop ID</label> <br>
+                            <select class="control" name="end_stop_id">
+                                @foreach ($stops as $stop)
+                                    <option class = "input" value="{{ $stop->id }}"> {{ $stop->id }}: {{ $stop->address }} </option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="field">
