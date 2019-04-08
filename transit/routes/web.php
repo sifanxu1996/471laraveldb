@@ -23,6 +23,7 @@ Route::resource('stops', 'StopsController');
 Route::resource('routes', 'RoutesController');
 Route::resource('analyst', 'AnalystController');
 Route::resource('requests', 'RequestsController');
+
 Route::get('/routes/{route}/assign', 'RoutesController@assign');
 Route::post('/routes/{route}/assignStore', 'RoutesController@assignStore');
 
