@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+Route::resource('stops', 'StopsController');
 Route::resource('routes', 'RoutesController');
 Route::resource('analyst', 'AnalystController');
 Route::resource('requests', 'RequestsController');
