@@ -19,11 +19,12 @@ class RouteRunsController extends Controller
 		$attributes = request()->validate([
     		'start_time' => ['required'],
     		'operator_id' => ['required'],
-    		'vehicle_id' => ['required'],
+				'vehicle_id' => ['required'],
+				'max_ridership' => ['required'],
     	]);
 
-    	$sql = 'INSERT INTO runs (route_id, start_time, admin_id, operator_id, vehicle_id) values (?, ?, ?, ?, ?)';
-		$fields = [$route_id, request('start_time'), Auth::user()->id, request('operator_id'), request('vehicle_id')];
+    	$sql = 'INSERT INTO runs (route_id, start_time, admin_id, operator_id, vehicle_id, max_ridership) values (?, ?, ?, ?, ?, ?)';
+		$fields = [$route_id, request('start_time'), Auth::user()->id, request('operator_id'), request('vehicle_id'), request('max_ridership')];
 		DB::insert($sql, $fields);
 
 		return redirect('/routes/' . $route_id);

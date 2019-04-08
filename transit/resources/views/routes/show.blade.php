@@ -102,6 +102,8 @@
                                 </div>
                             </div>
 
+                            <br>
+
                             <div class="field">
                                 <label class = "label" for="operator_id">Operator</label> <br>
                                 <select class="control" name="operator_id">
@@ -111,6 +113,8 @@
                                 </select>
                             </div>
 
+                            <br>
+
                             <div class="field">
                                 <label class = "label" for="vehicle_id">Vehicle</label> <br>
                                 <select class="control" name="vehicle_id">
@@ -118,6 +122,16 @@
                                         <option class = "input" value="{{ $vehicle->id }}"> {{ $vehicle->license }}: {{ $vehicle->capacity }} </option>
                                     @endforeach
                                 </select>
+                            </div>
+
+                            <br>
+
+                            <div class="field">
+                                <label for="max_ridership">Ridership</label> <br>
+                                
+                                <div class="control">
+                                    <input type="text" class="input" name="max_ridership">
+                                </div>
                             </div>
 
                             <div class="field">
