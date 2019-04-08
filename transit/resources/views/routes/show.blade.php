@@ -14,6 +14,9 @@
                         <a href="/routes/{{ $route->id }}/edit">
                             <button>Edit Route</button>
                         </a>
+                        <a href="/routes/{{ $route->id }}/assign">
+                            <button>Add Route Leg</button>
+                        </a>
                         <br>
                     @endif
 
@@ -54,9 +57,9 @@
                                     Run ID: {{ $run->id }}
         						</h2>
                                 Time: {{ $run->start_time }} <br>
-                                Admin: {{ $run->admin_id }} <br>
-                                Operator: {{ $run->operator_id}} <br>
-                                Vehicle: {{ $run->vehicle_id }} <br>
+                                Admin ID: {{ $run->admin_id }} <br>
+                                Operator ID: {{ $run->operator_id}} <br>
+                                Vehicle ID: {{ $run->vehicle_id }} <br>
         					</article>
 
                             <form method="POST" action="/routes/{{ $route->id }}/runs/{{ $run->id }}">
@@ -100,19 +103,21 @@
                             </div>
 
                             <div class="field">
-                                <label class="label" for="operator_id">Operator</label>
-
-                                <div class="control">
-                                    <input type="number" class="input" name="operator_id">
-                                </div>
+                                <label class = "label" for="operator_id">Operator</label> <br>
+                                <select class="control" name="operator_id">
+                                    @foreach ($operators as $operator)
+                                        <option class = "input" value="{{ $operator->id }}"> {{ $operator->id }}: {{ $operator->name }} </option>
+                                    @endforeach
+                                </select>
                             </div>
 
                             <div class="field">
-                                <label class="label" for="vehicle_id">Vehicle</label>
-
-                                <div class="control">
-                                    <input type="number" class="input" name="vehicle_id">
-                                </div>
+                                <label class = "label" for="vehicle_id">Vehicle</label> <br>
+                                <select class="control" name="vehicle_id">
+                                    @foreach ($vehicles as $vehicle)
+                                        <option class = "input" value="{{ $vehicle->id }}"> {{ $vehicle->license }}: {{ $vehicle->capacity }} </option>
+                                    @endforeach
+                                </select>
                             </div>
 
                             <div class="field">

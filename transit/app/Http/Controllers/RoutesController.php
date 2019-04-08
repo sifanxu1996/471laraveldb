@@ -24,7 +24,10 @@ class RoutesController extends Controller
 	{
 		Auth::user()->authenticateAdmin();
 
-		return view('routes.create');
+		$sql = 'SELECT * FROM stops';
+		$stops = DB::select($sql);
+
+		return view('routes.create', compact('stops'));
 	}
 
 	public function store()
@@ -60,7 +63,13 @@ class RoutesController extends Controller
 		$sql = 'SELECT * FROM stops';
 		$stops = DB::select($sql);
 
-		return view('routes.show', compact('route', 'runs', 'route_legs', 'stops'));
+		$sql = 'SELECT * FROM employees e, users u WHERE e.user_id = u.id AND e.emp_type = "operator"';
+		$operators = DB::select($sql);
+
+		$sql = 'SELECT * FROM vehicles';
+		$vehicles = DB::select($sql);
+
+		return view('routes.show', compact('route', 'runs', 'route_legs', 'stops', 'operators', 'vehicles'));
 	}
 
 	public function edit($id)
@@ -71,6 +80,38 @@ class RoutesController extends Controller
 		$route = collect(DB::select($sql))->first();
 
 		return view('routes.edit', compact('route'));
+	}
+
+	public function assign($id)
+	{
+		Auth::user()->authenticateAdmin();
+
+		$sql = 'SELECT * FROM routes WHERE id = ' . $id;
+		$route = collect(DB::select($sql))->first();
+
+		$sql = 'SELECT * FROM stops';
+		$stops = DB::select($sql);
+
+		return view('/routes.assign', compact('route', 'stops'));
+	}
+
+	public function assignStore($id)
+	{
+		Auth::user()->authenticateAdmin();
+
+		$attributes = request()->validate([
+    		'start_stop_id' => ['required'],
+    		'end_stop_id' => ['required'],
+    		'duration' => ['required'],
+    	]);
+
+    	if (request('start_stop_id') == request('end_stop_id')) abort(404);
+
+		$sql = 'INSERT INTO route_legs (route_id, start_stop_id, end_stop_id, duration) VALUES (?, ?, ?, ?)';
+		$fields = [$id, request('start_stop_id'), request('end_stop_id'), request('duration')];
+		DB::insert($sql, $fields);
+
+		return redirect('/routes/' . $id);
 	}
 
 	public function update($id)

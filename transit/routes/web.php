@@ -21,8 +21,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::resource('routes', 'RoutesController');
+<<<<<<< HEAD
 Route::resource('analyst', 'AnalystController');
 Route::resource('requests', 'RequestsController');
+=======
+Route::get('/routes/{route}/assign', 'RoutesController@assign');
+Route::post('/routes/{route}/assignStore', 'RoutesController@assignStore');
+>>>>>>> 9678ddef3d90632fa4062faf37f184ae187f4373
 
 /*
 Route::get('/routes', 'RoutesController@index');
@@ -39,9 +44,17 @@ Route::patch('clients/{client}', 'ClientsController@update');
 Route::get('clients/{client}/edit', 'ClientsController@edit');
 Route::patch('clients/{client}/deposit', 'ClientsController@deposit');
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9678ddef3d90632fa4062faf37f184ae187f4373
 Route::post('/routes/{route}/runs', 'RouteRunsController@store');
 Route::patch('/routes/{route}/runs/{run}', 'RouteRunsController@update');
 Route::delete('/routes/{route}/runs/{run}', 'RouteRunsController@destroy');
 
 Route::get('/employees', 'EmployeesController@index');
+<<<<<<< HEAD
 Route::get('/operators/{operator}', 'OperatorsController@show');
+=======
+Route::get('/operators/{operator}', 'OperatorsController@show');
+>>>>>>> 9678ddef3d90632fa4062faf37f184ae187f4373
