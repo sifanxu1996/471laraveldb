@@ -62,6 +62,14 @@ CREATE TABLE Stops (
 	PRIMARY KEY (id)
 );
 
+CREATE TABLE Requests (
+	id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+	req_message text NOT NULL,
+	analyst_id bigint(20) UNSIGNED NOT NULL,
+	route_id bigint(20) UNSIGNED NOT NULL,
+	PRIMARY KEY (id)
+);
+
 ALTER TABLE stops AUTO_INCREMENT = 1000;
 
 INSERT INTO Clients (user_id, account_balance) VALUES
@@ -111,3 +119,5 @@ INSERT INTO Route_legs (route_id, start_stop_id, end_stop_id, duration) VALUES
 (3, 1040, 1050, 5),
 (3, 1050, 1060, 5);
 
+INSERT INTO Requests (id, req_message, analyst_id, route_id) VALUES
+(1, 'TEST REQUEST: RUN 3 reaches maximum capacity. Needs another run shortly before or shortly after RUN 3.', 6, 1);

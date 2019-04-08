@@ -41,4 +41,8 @@ class User extends Authenticatable
     public function authenticateAdmin(){
         if (Auth::user()->role != 'admin') abort(404);
     }
+
+    public function authenticateAnalyst(){
+        if (Auth::user()->role != 'analyst') abort(404);
+    }
 }

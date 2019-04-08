@@ -44,6 +44,20 @@
                         <a class="navbar-brand" href="/employees">
                             Employees
                         </a>
+
+                        <a class="navbar-brand" href="/requests">
+                            Service Requests
+                        </a>
+                    @endif
+
+                    @if (Auth::user()->role == 'analyst')
+                        <a class="navbar-brand" href="/analyst">
+                            Ridership
+                        </a>
+
+                        <a class="navbar-brand" href="/requests">
+                            Service Requests
+                        </a>
                     @endif
                 @endif
 
