@@ -49,7 +49,7 @@ CREATE TABLE Runs (
 	admin_id bigint(20) UNSIGNED NOT NULL,
 	operator_id bigint(20) UNSIGNED NOT NULL,
 	vehicle_id bigint(20) UNSIGNED NOT NULL,
-	max_ridership bigint(20) UNSIGNED NOT NULL,
+	max_ridership bigint(20) UNSIGNED NOT NULL DEFAULT 0,
 	PRIMARY KEY (id),
 	FOREIGN KEY (route_id) REFERENCES Routes(id)
 	ON UPDATE CASCADE
