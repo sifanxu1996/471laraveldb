@@ -82,6 +82,38 @@ class RoutesController extends Controller
 		return view('routes.edit', compact('route'));
 	}
 
+	public function assign($id)
+	{
+		Auth::user()->authenticateAdmin();
+
+		$sql = 'SELECT * FROM routes WHERE id = ' . $id;
+		$route = collect(DB::select($sql))->first();
+
+		$sql = 'SELECT * FROM stops';
+		$stops = DB::select($sql);
+
+		return view('/routes.assign', compact('route', 'stops'));
+	}
+
+	public function assignStore($id)
+	{
+		Auth::user()->authenticateAdmin();
+
+		$attributes = request()->validate([
+    		'start_stop_id' => ['required'],
+    		'end_stop_id' => ['required'],
+    		'duration' => ['required'],
+    	]);
+
+    	if (request('start_stop_id') == request('end_stop_id')) abort(404);
+
+		$sql = 'INSERT INTO route_legs (route_id, start_stop_id, end_stop_id, duration) VALUES (?, ?, ?, ?)';
+		$fields = [$id, request('start_stop_id'), request('end_stop_id'), request('duration')];
+		DB::insert($sql, $fields);
+
+		return redirect('/routes/' . $id);
+	}
+
 	public function update($id)
 	{
 		Auth::user()->authenticateAdmin();

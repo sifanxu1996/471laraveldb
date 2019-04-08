@@ -21,6 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::resource('routes', 'RoutesController');
+Route::get('/routes/{route}/assign', 'RoutesController@assign');
+Route::post('/routes/{route}/assignStore', 'RoutesController@assignStore');
 
 /*
 Route::get('/routes', 'RoutesController@index');
@@ -36,6 +38,7 @@ Route::get('clients/{client}', 'ClientsController@show');
 Route::patch('clients/{client}', 'ClientsController@update');
 Route::get('clients/{client}/edit', 'ClientsController@edit');
 Route::patch('clients/{client}/deposit', 'ClientsController@deposit');
+
 
 Route::post('/routes/{route}/runs', 'RouteRunsController@store');
 Route::patch('/routes/{route}/runs/{run}', 'RouteRunsController@update');

@@ -14,6 +14,9 @@
                         <a href="/routes/{{ $route->id }}/edit">
                             <button>Edit Route</button>
                         </a>
+                        <a href="/routes/{{ $route->id }}/assign">
+                            <button>Add Route Leg</button>
+                        </a>
                         <br>
                     @endif
 
