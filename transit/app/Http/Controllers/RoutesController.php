@@ -37,8 +37,8 @@ class RoutesController extends Controller
 		request()->validate([
 			'id' => ['required'],
 			'name' => ['required', 'min:2', 'max:255'],
-			'start_stop_id' => ['required'],
-			'end_stop_id' => ['required'],
+			'start_stop_id' => ['required', 'different:end_stop_id'],
+			'end_stop_id' => ['required', 'different:start_stop_id'],
 		]);
 
 		$sql = 'INSERT INTO routes (id, name, start_stop_id, end_stop_id) values (?, ?, ?, ?)';
@@ -100,23 +100,24 @@ class RoutesController extends Controller
 		Auth::user()->authenticateAdmin();
 
 		$attributes = request()->validate([
-    		'start_stop_id' => ['required'],
-    		'end_stop_id' => ['required'],
+    		'start_stop_id' => ['required', 'different:end_stop_id'],
+    		'end_stop_id' => ['required', 'different:start_stop_id'],
     		'duration' => ['required'],
     	]);
 
-			$sql = 'SELECT * FROM route_legs WHERE route_legs.route_id = ' .$id;
-			$route_legs = DB::select($sql);
-
-    	if (request('start_stop_id') == request('end_stop_id')) abort(404);
-			if(!empty($route_legs)) {
-				foreach ($route_legs as $routeleg ) {
-					if ($routeleg->start_stop_id==request('start_stop_id') || $routeleg->end_stop_id==request('end_stop_id')) abort(404);
-				}
+		$sql = 'SELECT * FROM route_legs WHERE route_legs.route_id = ' .$id;
+		$route_legs = DB::select($sql);
+		
+		if(!empty($route_legs)) {
+			foreach ($route_legs as $routeleg ) {
+				if ($routeleg->start_stop_id==request('start_stop_id') || $routeleg->end_stop_id==request('end_stop_id')) dd('Route leg already exists.');
 			}
-/* 
-			echo "<script type=\"text/javascript\"> window.alert('Edit route after adding new route leg!');
-				window.location.href = '/index.html'; </script>"; */
+		}
+		
+		/* 
+		echo "<script type=\"text/javascript\"> window.alert('Edit route after adding new route leg!');
+		window.location.href = '/index.html'; </script>";
+		*/
 
 		$sql = 'INSERT INTO route_legs (route_id, start_stop_id, end_stop_id, duration) VALUES (?, ?, ?, ?)';
 		$fields = [$id, request('start_stop_id'), request('end_stop_id'), request('duration')];

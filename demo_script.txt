@@ -1,0 +1,15 @@
+REGISTER AS CLIENT
+LOGIN AS CLIENT
+LOGIN AS OPERATOR
+LOGIN AS ADMIN
+
+VIEWS FOR EACH
+
+Routes -> make/edit/delete
+Route_legs -> make/edit/delete
+Runs -> make/edit/delete
+
+Employees -> list all employees (only admin can see)
+Stops -> make/edit/delete stop
+Stop arrival times
+
