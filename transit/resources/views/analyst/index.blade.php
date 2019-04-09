@@ -5,15 +5,15 @@
     <div class="col-md-8">
       <div class="card">
         <div class="card-header">
-          Analytics <br>
+          <h3>Analytics </h3><br>
         </div>
 
         @foreach ($routes as $route)
         <div class="card-body">
           <article>
-            <h2>
+            <h3>
               <a href="/analyst/{{ $route->id }}/"> Route {{ $route->id }}: {{ $route->name }} </a>
-            </h2>
+            </h3>
             Start stop: {{ $route->start_stop_id }} <br>
             End stop: {{ $route->end_stop_id }} <br>
           </article>

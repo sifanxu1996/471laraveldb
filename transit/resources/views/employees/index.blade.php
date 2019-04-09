@@ -6,15 +6,15 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    Employees <br>
+                    <h3>Employees</h3> <br>
                 </div>
 
                 @foreach ($employees as $emp)
                 <div class="card-body">
 					<article>
-						<h2>
+						<h3>
 							Employee: {{ $emp->name }}
-						</h2>
+                        </h3>
 						Email: {{ $emp->email }} <br>
                         Role: {{ $emp->emp_type }} <br>
                         SSN: {{ $emp->ssn }} <br>

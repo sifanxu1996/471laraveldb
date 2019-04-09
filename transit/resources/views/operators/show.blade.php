@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    My Assigned Runs <br>
+                    <h3>My Assigned Runs</h3> <br>
                 </div>
                 
                 <div class="card-body">
@@ -15,12 +15,12 @@
                         @foreach ($runs as $run)
                         <div class="card">
                             <div class="card-header">
-                                Route: {{ $run->route_id }}, {{ $run->name }} <br>
+                                <h5>Route: {{ $run->route_id }}, {{ $run->name }} </h5>
                             </div>
                             <div class='card-body'>
                                 Start stop: {{ $run->start_stop_id }} <br>
                                 End stop: {{ $run->end_stop_id }} <br>
-                                Time: {{ $run->start_time }} <br>
+                                Time: {{ date('H:i', strtotime($run->start_time)) }} <br>
                             </div>
                         </div>
                         @endforeach

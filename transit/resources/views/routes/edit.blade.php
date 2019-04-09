@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Edit Route {{ $route->id }}</div>
+                <div class="card-header"><h3>Edit Route {{ $route->id }} </h3></div>
 
                 <div class="card-body">
                     <form method="POST" action="/routes/{{ $route->id }}" style="margin-bottom: 1em">

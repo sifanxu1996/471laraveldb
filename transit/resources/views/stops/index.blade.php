@@ -6,15 +6,15 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    Stops <br>
+                    <h3>Stops <br></h3>
                 </div>
 
                 @foreach ($stops as $stop)
                 <div class="card-body">
                   <article>
-                    <h2>
+                    <h3>
                       <a href="/stops/{{ $stop->id }}/"> Stop {{ $stop->id }} </a>
-                    </h2>
+                    </h3>
                     <p style="text-indent: 30px">Address: {{ $stop->address }}</p>
                   </article>
                 </div>

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Create New Service Request</div>
+                <div class="card-header"><h3>Create New Service Request</h3></div>
 
                 <div class="card-body">
                     <form method="POST" action="/requests/">

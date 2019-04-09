@@ -6,15 +6,15 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    My Account <br>
+                    <h3>My Account</h3> <br>
                 </div>
 
                 <div class="card-body">
-                    <h2>
+                    <h3>
                         <a href="/clients/{{ $client->user_id }}/edit">
                             <button>Edit Account</button>
                         </a>
-                    </h2>
+                    </h3>
 					<article>
                         Name: {{ Auth::user()->name }} <br>
                         Email: {{ Auth::user()->email }} <br>

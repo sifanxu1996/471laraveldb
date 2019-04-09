@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    Service Requests <br>
+                    <h3>Service Requests </h3><br>
 
                     @if (Auth::user() && Auth::user()->role == 'analyst')
                         <a href="requests/create">

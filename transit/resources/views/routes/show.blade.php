@@ -9,7 +9,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    Route {{ $route->id }}
+                    <h3>Route {{ $route->id }} </h3><br>
                     @if (Auth::user() && Auth::user()->role == 'admin')
                         <a href="/routes/{{ $route->id }}/edit">
                             <button>Edit Route</button>
@@ -22,7 +22,7 @@
 
                     @foreach ($route_legs as $route_leg)
                         <div class="card">
-                            <div class='card-header'>Route Leg {{ $route_leg->id }}</div>
+                            <div class='card-header'><h5>Route Leg {{ $route_leg->id }}</h5></div>
                             <div class="card-body">
                                 Start Stop: {{ $route_leg->start_stop_id }}, 
                                 
@@ -53,10 +53,10 @@
                     @if (!empty($runs))
                         @foreach ($runs as $run)
         					<article>
-        						<h2>
+        						<h3>
                                     Run ID: {{ $run->id }}
-        						</h2>
-                                Time: {{ $run->start_time }} <br>
+                                </h3>
+                                Time: {{ date('H:i', strtotime($run->start_time)) }} <br>
                                 Admin ID: {{ $run->admin_id }} <br>
                                 Operator ID: {{ $run->operator_id}} <br>
                                 Vehicle ID: {{ $run->vehicle_id }} <br>

@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    Edit Account Details<br>
+                    <h3>Edit Account Details</h3><br>
                 </div>
 
                 <div class="card-body">

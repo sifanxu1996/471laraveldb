@@ -9,7 +9,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    Route {{ $route->id }}: Assign New Route Legs
+                    <h3>Route {{ $route->id }}: Assign New Route Legs </h3>
 
             <!-- add a new route_leg for the route -->
             <div class="card">

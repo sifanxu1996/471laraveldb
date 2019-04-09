@@ -9,7 +9,7 @@
 
           <div class="card">
               <div class="card-header">
-                  Route {{ $route->id }} Analytics
+                  <h3>Route {{ $route->id }} Analytics </h3>
                   
               </div>
 
@@ -17,10 +17,10 @@
                   @if (!empty($runs))
                       @foreach ($runs as $run)
                 <article>
-                  <h2>
+                  <h3>
                                   Run ID: {{ $run->id }}
-                  </h2>
-                              Time: {{ $run->start_time }} <br>
+                  </h3>
+                              Time: {{ date('H:i', strtotime($run->start_time)) }} <br>
                               Admin: {{ $run->admin_id }} <br>
                               Operator: {{ $run->operator_id}} <br>
                               Vehicle: {{ $run->vehicle_id }} <br>

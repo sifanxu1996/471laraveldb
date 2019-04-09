@@ -24,27 +24,26 @@ class StopsController extends Controller
         $sql = 'SELECT * FROM stops WHERE id = ' . $id;
         $stops = collect(DB::select($sql))->first();
 
-        $sql = 'SELECT * FROM route_legs WHERE end_stop_id = ' . $id . ' ORDER BY route_id';
-        $route_legs = DB::select($sql);
+        define("sql1", 'SELECT * FROM route_legs rs WHERE rs.end_stop_id = ' . $id . ' ORDER BY rs.route_id');
+        $route_legs = DB::select(sql1);
 
-        $sql = 'SELECT rl.route_id, rn.start_time FROM route_legs rl, runs rn WHERE rl.end_stop_id = ' . $id . ' AND rl.route_id = rn.route_id';
+        $sql = 'SELECT * FROM route_legs';
+        $route_legs_all = DB::select($sql);
+
+        define("sql2" , 'SELECT * FROM routes r WHERE r.start_stop_id = ' . $id . ' AND r.id NOT IN( SELECT rl.route_id FROM route_legs rl WHERE rl.end_stop_id = ' . $id . ' ) ORDER BY r.id');
+        $runs_start_at = DB::select(sql2);
+
+        $sql = 'SELECT rab.id, h.name FROM (SELECT rr.route_id AS id FROM (' . sql1 . ') rr UNION SELECT ra.id FROM (' . sql2 . ') ra ) rab, routes h WHERE rab.id = h.id ORDER BY rab.id';
+        $all_at_stop = DB::select($sql);
+
+        $sql = 'SELECT * FROM runs';
         $runs = DB::select($sql);
 
-        return view('stops.show', compact('stops', 'route_legs', 'runs'));
+        $sql = 'SELECT * FROM routes';
+        $routes = DB::select($sql);
+
+        
+
+        return view('stops.show', compact( 'stops', 'runs_start_at', 'runs', 'all_at_stop', 'route_legs', 'routes', 'route_legs_all'));
     }
 }
-
-
-/* CREATE TABLE Prev_Stop (
-    routeID bigint(20) UNSIGNED NOT NULL,
-    startID int(11) NOT NULL,
-    stopID int(11) NOT NULL,
-    travelTime int(11) NOT NULL
-    );
-    
-INSERT INTO Prev_Stop (routeID, startID, stopID, travelTime) VALUES
-((SELECT route_id, start_stop_id, end_stop_id, duration FROM route_legs rl WHERE rl.end_stop_id = 1040)
-        UNION
-        (SELECT rl.route_id, rl.start_stop_id, rl.end_stop_id, rl.duration
-        FROM route_legs rl JOIN Prev_Stop p ON (rl.end_stop_id=p.startID AND rl.route_id=p.routeID)
-        JOIN routes rt ON (rt.id=rl.route_id AND rt.start_stop_id=rl.start_stop_id) )); */

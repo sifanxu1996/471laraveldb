@@ -57,7 +57,7 @@ class RoutesController extends Controller
 		$sql = 'SELECT * FROM runs WHERE route_id = ' . $id;
 		$runs = DB::select($sql);
 
-		$sql = 'SELECT * FROM route_legs WHERE route_id = ' . $id;
+		$sql = 'SELECT * FROM route_legs WHERE route_id = ' . $id . ' ORDER BY start_stop_id';
 		$route_legs = DB::select($sql);
 
 		$sql = 'SELECT * FROM stops';
@@ -105,7 +105,18 @@ class RoutesController extends Controller
     		'duration' => ['required'],
     	]);
 
+			$sql = 'SELECT * FROM route_legs WHERE route_legs.route_id = ' .$id;
+			$route_legs = DB::select($sql);
+
     	if (request('start_stop_id') == request('end_stop_id')) abort(404);
+			if(!empty($route_legs)) {
+				foreach ($route_legs as $routeleg ) {
+					if ($routeleg->start_stop_id==request('start_stop_id') || $routeleg->end_stop_id==request('end_stop_id')) abort(404);
+				}
+			}
+/* 
+			echo "<script type=\"text/javascript\"> window.alert('Edit route after adding new route leg!');
+				window.location.href = '/index.html'; </script>"; */
 
 		$sql = 'INSERT INTO route_legs (route_id, start_stop_id, end_stop_id, duration) VALUES (?, ?, ?, ?)';
 		$fields = [$id, request('start_stop_id'), request('end_stop_id'), request('duration')];
