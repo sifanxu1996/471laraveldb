@@ -22,7 +22,19 @@
 
                     @foreach ($route_legs as $route_leg)
                         <div class="card">
-                            <div class='card-header'><h5>Route Leg {{ $route_leg->id }}</h5></div>
+                            <div class='card-header'>
+                                <h5>Route Leg {{ $route_leg->id }}</h5>
+                                <form method="POST" action="/routes/{{ $route->id }}/destroyLeg/{{ $route_leg->id }}">
+                                    @method('DELETE')
+                                    @csrf
+
+                                    <div class="field">
+                                        <div class="control">
+                                            <button type="submit" class="button is-link">Delete Leg</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                             <div class="card-body">
                                 Start Stop: {{ $route_leg->start_stop_id }}, 
                                 

@@ -28,6 +28,7 @@ Route::resource('vehicles', 'VehiclesController');
 
 Route::get('/routes/{route}/assign', 'RoutesController@assign');
 Route::post('/routes/{route}/assignStore', 'RoutesController@assignStore');
+Route::delete('/routes/{route}/destroyLeg/{route_leg}', 'RoutesController@destroyLeg');
 
 /*
 Route::get('/routes', 'RoutesController@index');

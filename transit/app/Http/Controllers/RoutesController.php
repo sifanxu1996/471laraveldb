@@ -126,6 +126,15 @@ class RoutesController extends Controller
 		return redirect('/routes/' . $id);
 	}
 
+	public function destroyLeg($route_id, $route_leg_id) {
+		Auth::user()->authenticateAdmin();
+
+		$sql = 'DELETE FROM route_legs WHERE id = ' . $route_leg_id;
+		DB::delete($sql);
+
+		return redirect('/routes/' . $route_id);
+	}
+
 	public function update($id)
 	{
 		Auth::user()->authenticateAdmin();
