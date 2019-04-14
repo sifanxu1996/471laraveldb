@@ -31,7 +31,7 @@
 
                         <div class="field">
                             <div class="control">
-                                <button type="submit" class="button is-link">Update Route</button>
+                                <button type="submit" class="button is-link">Update Account Info</button>
                             </div>
                         </div>
 

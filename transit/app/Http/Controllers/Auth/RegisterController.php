@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class RegisterController extends Controller
 {
@@ -71,10 +72,18 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        $client = Client::create([
-            'user_id' => $user->id,
-            'account_balance' => 0,
-        ]);
+        /**
+        $sql = 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)';
+        $fields = [$data['name'], $data['email'], Hash::make($data['password'])];
+        DB::insert($sql, $fields);
+
+        $sql = 'SELECT * FROM users WHERE email = ' . $data['email'];
+        $user = DB::select($sql);
+        **/
+
+        $sql = 'INSERT INTO clients (user_id, account_balance) VALUES (?, ?)';
+        $fields = [$user->id, 0];
+        DB::insert($sql, $fields);
 
         return $user;
     }
