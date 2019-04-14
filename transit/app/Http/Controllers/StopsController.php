@@ -14,7 +14,7 @@ class StopsController extends Controller
 {
     public function index()
     {
-        $sql = 'SELECT * FROM stops';
+        $sql = 'SELECT * FROM stops ORDER BY id';
         $stops = DB::select($sql);
 
         return view('stops.index', compact('stops'));
@@ -48,9 +48,21 @@ class StopsController extends Controller
         return view('stops.show', compact( 'stops', 'runs_start_at', 'runs', 'all_at_stop', 'route_legs', 'routes', 'route_legs_all'));
     }
 
+    public function store() {
+        request()->validate([
+            'address' => ['required'],
+        ]);
+
+        $sql = 'INSERT INTO stops (address) VALUES (?)';
+        $fields = [request('address')];
+        DB::insert($sql, $fields);
+
+        return redirect('/stops/');
+    }
+
     public function destroy($id) {
         Auth::user()->authenticateAdmin();
-        
+
         $sql = 'DELETE FROM stops WHERE id = ' . $id;
         DB::delete($sql);
 

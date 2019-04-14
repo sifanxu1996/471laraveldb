@@ -31,6 +31,46 @@
                 @endforeach
 
             </div>
+
+            <!-- add a new run for the route -->
+            @if (Auth::user() && Auth::user()->role == 'admin')
+                <div class="card">
+                    <div class="card-header">
+                        Create New Stop
+                    </div>
+
+                    <div class="card-body">
+                    
+                        <form method="POST" action="/stops/" class="box">
+                            @csrf
+                            <div class="field">
+                                <label class="label" for="address">Stop Address</label>
+
+                                <div class="control">
+                                    <input type="text" class="input" name="address">
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <div class="control">
+                                    <button type="submit">Create Stop</button>
+                                </div>
+                            </div>
+
+                            @if ($errors->any())
+                                <div class="notification is-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                        </form>
+
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 </div>
