@@ -21,7 +21,7 @@ class AnalystController extends Controller
         $sql = 'SELECT * FROM routes WHERE id = ' . $id;
 		$route = collect(DB::select($sql))->first();
 
-		$sql = 'SELECT * FROM runs WHERE route_id = ' . $id;
+		$sql = 'SELECT * FROM runs r, vehicles v WHERE v.id = r.vehicle_id AND r.route_id = ' . $id;
 		$runs = DB::select($sql);
 
 		$sql = 'SELECT * FROM route_legs WHERE route_id = ' . $id;
