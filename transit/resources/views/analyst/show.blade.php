@@ -24,7 +24,10 @@
                               Admin: {{ $run->admin_id }} <br>
                               Operator: {{ $run->operator_id}} <br>
                               Vehicle: {{ $run->vehicle_id }} <br>
-                              Ridership: {{ $run->max_ridership }} <br>
+                              <ul>
+                                  <li>Capacity: {{ $run->capacity }}</li>
+                                  <li>Ridership: {{ $run->max_ridership }}</li>
+                              </ul>
                 </article>
 
                           <form method="POST" action="/routes/{{ $route->id }}/runs/{{ $run->id }}">
