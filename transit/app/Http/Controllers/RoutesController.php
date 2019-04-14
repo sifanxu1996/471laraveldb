@@ -63,7 +63,7 @@ class RoutesController extends Controller
 		$sql = 'SELECT * FROM stops';
 		$stops = DB::select($sql);
 
-		$sql = 'SELECT * FROM employees e, users u WHERE e.user_id = u.id AND e.emp_type = "operator"';
+		$sql = 'SELECT * FROM employees e, users u WHERE e.user_id = u.id AND u.role = "operator"';
 		$operators = DB::select($sql);
 
 		$sql = 'SELECT * FROM vehicles';

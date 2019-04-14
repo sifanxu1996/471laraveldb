@@ -48,6 +48,10 @@
                         <a class="navbar-brand" href="/requests">
                             Service Requests
                         </a>
+
+                        <a class="navbar-brand" href="/vehicles">
+                            Vehicles
+                        </a>
                     @endif
 
                     @if (Auth::user()->role == 'analyst')

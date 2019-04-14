@@ -6,31 +6,26 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h3>Employees</h3> <br>
-                    <a href="/employees/create">
-                        <button>Create New Employee</button>
+                    <h3>Vehicles</h3> <br>
+                    <a href="/vehicles/create">
+                        <button>Add New Vehicle</button>
                     </a>
                 </div>
 
-                <!-- display all employees -->
-                @foreach ($employees as $emp)
+                <!-- display all vehicles -->
+                @foreach ($vehicles as $v)
                 <div class="card-body">
-					<article>
-						<h3>
-							Employee: {{ $emp->name }}
-                        </h3>
-						Email: {{ $emp->email }} <br>
-                        Role: {{ $emp->role }} <br>
-                        SSN: {{ $emp->ssn }} <br>
-					</article>
+					ID: {{ $v->id }} <br>
+                    License: {{ $v->license }} <br>
+                    Capacity: {{ $v->capacity }} <br>
 
-                    <form method="POST" action="/employees/{{ $emp->id }}">
+                    <form method="POST" action="/vehicles/{{ $v->id }}">
                         @method('DELETE')
                         @csrf
 
                         <div class="field">
                             <div class="control">
-                                <button type="submit" class="button is-link">Remove Employee</button>
+                                <button type="submit" class="button is-link">Delete Vehicle</button>
                             </div>
                         </div>
                     </form>

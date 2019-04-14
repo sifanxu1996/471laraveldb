@@ -9,7 +9,6 @@ CREATE TABLE Clients (
 CREATE TABLE Employees (
 	user_id bigint(20) UNSIGNED NOT NULL,
 	ssn int(11) NOT NULL,
-	emp_type varchar(255) NOT NULL,
 	FOREIGN KEY (user_id) REFERENCES Users(id)
 	ON UPDATE CASCADE
 	ON DELETE CASCADE
@@ -73,14 +72,14 @@ CREATE TABLE Requests (
 ALTER TABLE stops AUTO_INCREMENT = 1000;
 
 INSERT INTO Clients (user_id, account_balance) VALUES
-(1, 100);
+(1, 0);
 
-INSERT INTO Employees (user_id, ssn, emp_type) VALUES
-(2, 222222222, 'admin'),
-(3, 333333333, 'operator'),
-(4, 444444444, 'operator'),
-(5, 555555555, 'operator'),
-(6, 666666666, 'analyst');
+INSERT INTO Employees (user_id, ssn) VALUES
+(2, 222222222),
+(3, 333333333),
+(4, 444444444),
+(5, 555555555),
+(6, 666666666);
 
 INSERT INTO Vehicles (id, license, capacity) VALUES
 (1, 'DD8-392A', 40),

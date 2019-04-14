@@ -16,6 +16,9 @@ VIEWS AS CLIENT
 VIEWS FOR EMPLOYEES: Carl@gmail.com, password
 	- view assigned runs
 
+VIEWS FOR ANALYSTS
+	- view/create service requests
+
 VIEWS FOR ADMIN: Bob@gmail.com, password
 	- Routes -> make/edit/delete
 	- Route_legs -> make/edit/delete
@@ -23,6 +26,9 @@ VIEWS FOR ADMIN: Bob@gmail.com, password
 	- Stops -> make/edit/delete
 	- view all employees
 	- view service requests
+	
+**SHOW THAT CHANGES BY ADMIN ARE ACCESSIBLE BY OPERATOR
+**SHOW THAT CHANGES BY ANALYST ARE ACCESSIBLE BY ADMIN
 
 PRESENT QUERIES
 - recursive query to fetch stops & bus arrival times
@@ -31,3 +37,4 @@ PRESENT QUERIES
 - query to fetch runs corresponding to operator
 - select, join queries involving user, employees
 - select, join queries involving stops, address_names
+- queries on ridership, serrvice requests
