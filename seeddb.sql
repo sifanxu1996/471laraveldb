@@ -1,17 +1,7 @@
-CREATE TABLE Clients (
-	user_id bigint(20) UNSIGNED NOT NULL,
-	account_balance int(11) DEFAULT 0,
-	FOREIGN KEY(user_id) REFERENCES Users(id)
-	ON UPDATE CASCADE
-	ON DELETE CASCADE
-);
-
-CREATE TABLE Employees (
-	user_id bigint(20) UNSIGNED NOT NULL,
-	ssn int(11) NOT NULL,
-	FOREIGN KEY (user_id) REFERENCES Users(id)
-	ON UPDATE CASCADE
-	ON DELETE CASCADE
+CREATE TABLE Stops (
+	id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+	address varchar(255) NOT NULL UNIQUE,
+	PRIMARY KEY (id)
 );
 
 CREATE TABLE Vehicles (
@@ -21,24 +11,38 @@ CREATE TABLE Vehicles (
 	PRIMARY KEY (id)
 );
 
+CREATE TABLE Clients (
+	user_id bigint(20) UNSIGNED NOT NULL,
+	account_balance int(11) DEFAULT 0,
+	FOREIGN KEY(user_id) REFERENCES Users(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE Employees (
+	user_id bigint(20) UNSIGNED NOT NULL,
+	ssn int(11) NOT NULL,
+	FOREIGN KEY (user_id) REFERENCES Users(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
 CREATE TABLE Routes (
 	id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
 	name varchar(255) NOT NULL,
-	start_stop_id int(11) NOT NULL,
-	end_stop_id int(11) NOT NULL,
-	PRIMARY KEY (id)
+	start_stop_id bigint(20) UNSIGNED NOT NULL,
+	end_stop_id bigint(20) UNSIGNED NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (start_stop_id) REFERENCES Stops(id) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (end_stop_id) REFERENCES Stops(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE Route_legs (
 	id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
 	route_id bigint(20) UNSIGNED NOT NULL,
-	start_stop_id int(11) NOT NULL,
-	end_stop_id int(11) NOT NULL,
+	start_stop_id bigint(20) UNSIGNED NOT NULL,
+	end_stop_id bigint(20) UNSIGNED NOT NULL,
 	duration int(11) NOT NULL,
 	PRIMARY KEY (id),
-	FOREIGN KEY (route_id) REFERENCES Routes(id)
-	ON UPDATE CASCADE
-	ON DELETE CASCADE
+	FOREIGN KEY (route_id) REFERENCES Routes(id) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (start_stop_id) REFERENCES Stops(id) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (end_stop_id) REFERENCES Stops(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE Runs (
@@ -50,15 +54,10 @@ CREATE TABLE Runs (
 	vehicle_id bigint(20) UNSIGNED NOT NULL,
 	max_ridership bigint(20) UNSIGNED NOT NULL DEFAULT 0,
 	PRIMARY KEY (id),
-	FOREIGN KEY (route_id) REFERENCES Routes(id)
-	ON UPDATE CASCADE
-	ON DELETE CASCADE
-);
-
-CREATE TABLE Stops (
-	id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-	address varchar(255) NOT NULL UNIQUE,
-	PRIMARY KEY (id)
+	FOREIGN KEY (route_id) REFERENCES Routes(id) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (admin_id) REFERENCES Employees(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (operator_id) REFERENCES Employees(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (vehicle_id) REFERENCES Vehicles(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE Requests (
@@ -66,7 +65,9 @@ CREATE TABLE Requests (
 	req_message text NOT NULL,
 	analyst_id bigint(20) UNSIGNED NOT NULL,
 	route_id bigint(20) UNSIGNED NOT NULL,
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	FOREIGN KEY (analyst_id) REFERENCES Employees(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (route_id) REFERENCES Routes(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 ALTER TABLE stops AUTO_INCREMENT = 1000;

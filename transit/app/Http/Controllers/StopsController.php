@@ -8,6 +8,7 @@ use App\Run;
 use DB;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StopsController extends Controller
 {
@@ -45,5 +46,14 @@ class StopsController extends Controller
         
 
         return view('stops.show', compact( 'stops', 'runs_start_at', 'runs', 'all_at_stop', 'route_legs', 'routes', 'route_legs_all'));
+    }
+
+    public function destroy($id) {
+        Auth::user()->authenticateAdmin();
+        
+        $sql = 'DELETE FROM stops WHERE id = ' . $id;
+        DB::delete($sql);
+
+        return redirect('/stops/');
     }
 }

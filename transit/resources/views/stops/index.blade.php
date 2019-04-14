@@ -15,6 +15,16 @@
                     <h3>
                       <a href="/stops/{{ $stop->id }}/"> Stop {{ $stop->id }} </a>
                     </h3>
+                    <form method="POST" action="/stops/{{ $stop->id }}">
+                        @method('DELETE')
+                        @csrf
+
+                        <div class="field">
+                            <div class="control">
+                                <button type="submit" class="button is-link">Delete Stop</button>
+                            </div>
+                        </div>
+                    </form>
                     <p style="text-indent: 30px">Address: {{ $stop->address }}</p>
                   </article>
                 </div>
