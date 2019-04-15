@@ -21,6 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `transit`
 --
+DROP DATABASE IF EXISTS `transit`;
 CREATE DATABASE IF NOT EXISTS `transit` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `transit`;
 
