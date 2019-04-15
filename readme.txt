@@ -18,3 +18,14 @@ INSTRUCTIONS TO RUN THE PROJECT APPLICATION:
 
 8) Open web browser and navigate to the following url:
 	http://localhost:8000/
+
+9) login using the following credentials:
+
+**password is 'password'**
+
+CLIENT:		abe@gmail.com
+ADMIN:		bob@gmail.com
+OPERATOR:	carl@gmail.com
+OPERATOR:	dave@gmail.com
+OPERATOR:	eli@gmail.com
+ANALYST:	fin@gmail.com
