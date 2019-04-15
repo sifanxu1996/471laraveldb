@@ -19,11 +19,13 @@
                         @method('DELETE')
                         @csrf
 
+                        @if (Auth::user() && Auth::user()->role == 'admin')
                         <div class="field">
                             <div class="control">
                                 <button type="submit" class="button is-link">Delete Stop</button>
                             </div>
                         </div>
+                        @endif
                     </form>
                     <p style="text-indent: 30px">Address: {{ $stop->address }}</p>
                   </article>

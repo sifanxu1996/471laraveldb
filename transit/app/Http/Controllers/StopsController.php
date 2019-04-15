@@ -43,8 +43,6 @@ class StopsController extends Controller
         $sql = 'SELECT * FROM routes';
         $routes = DB::select($sql);
 
-        
-
         return view('stops.show', compact( 'stops', 'runs_start_at', 'runs', 'all_at_stop', 'route_legs', 'routes', 'route_legs_all'));
     }
 

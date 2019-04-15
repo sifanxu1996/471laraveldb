@@ -1,12 +1,20 @@
-1) Import queries from createdb.sql
+INSTRUCTIONS TO RUN THE PROJECT APPLICATION:
 
-2) Open command line in /transit and execute commands:
+1) ensure APACHE and MySQL are installed on your device
+
+2) ensure Laravel and Composer are installed on your device
+	https://laravel.com/docs/5.8/installation
+
+3) open MyPHPAdmin and import the file: createdb.sql
+
+5) Open command line in /transit and execute commands:
 	php artisan migrate
 	php artisan db:seed
-	
-3) Import queries from seeddb.sql
 
-4) Open command line in /transit and execute commands:
+6) open MyPHPAdmin, select the database 'transit' and import the file: seeddb.sql
+
+7) Open command line in /transit and execute commands:
 	php artisan serve
 
-5) Open web browser and navigate to http://localhost:8000/
+8) Open web browser and navigate to the following url:
+	http://localhost:8000/
